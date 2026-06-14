@@ -1,15 +1,21 @@
 # Wickham Services Ltd — Brand Design System
 
 **Direction:** Beacon — modern, premium, signal-clear digital field service.
-**Palette:** Deep blue + azure/cyan on dark navy.
-**Status:** v2.0 — supersedes v1.0 ("Kiosk", cobalt + signal orange).
+**Palette:** Blue + cyan on dark navy, with a full functional/semantic accent set.
+**Status:** v2.1 — supersedes v1.0 ("Kiosk", cobalt + signal orange).
 **Last updated:** 14 June 2026.
 
-> **v2.0 supersedes v1.0.** The brand has moved from the v1.0 "Kiosk" system (cobalt `#1438A8`
+> **v2.1 supersedes v1.0.** The brand has moved from the v1.0 "Kiosk" system (cobalt `#1438A8`
 > + signal orange `#FF5722`, Archivo Black `WICKHAM SERVICES.` wordmark, Bauhaus hard edges, *no
-> gradients/glows*) to the **"Beacon"** identity: the **WS monogram roundel**, a deeper blue +
-> cyan palette on dark navy, and a premium digital finish that *embraces* gradient, glow and depth.
-> Where v2.0 and v1.0 disagree, **v2.0 wins**. The orange accent is retired.
+> gradients/glows*) to the **"Beacon"** identity: the **WS monogram roundel**, a blue + cyan
+> palette on dark navy, and a premium digital finish that *embraces* gradient, glow and depth.
+> Where v2.x and v1.0 disagree, **v2.x wins**.
+>
+> **v2.1 note (palette):** the colour system is now defined by the **live ops application** — the
+> shared `web/brand.css` stylesheet is the single source of truth (§3). Blue `#3B82F6` is the
+> primary action colour, cyan `#06B6D4` the highlight, and a **functional/semantic accent set**
+> (success/warning/danger/etc.) is part of the brand. **Orange `#F59E0B` is reinstated — strictly
+> as the *warning/pending* UI signal, not as a decorative brand colour.**
 
 This document is the single source of truth for all Wickham Services Ltd brand, web, and design
 decisions. Asset files + this document live in the **`wickham-brand`** repo and are served to every
@@ -81,63 +87,76 @@ Nothing intrudes inside that.
 
 ## 3. Colour System
 
-The brand is **dark-first**: deep navy is the hero surface, cyan is the single accent ("the signal").
+The brand is **dark-first**: navy is the hero surface, blue + cyan carry identity, and a small
+set of **functional accents** signal UI state (success / warning / danger). The canonical
+definition is the shared **`web/brand.css`** stylesheet — this section documents it; that file
+ships it. Token names below match `brand.css` exactly.
 
-| Name | Hex | Role |
-|---|---|---|
-| **Deep Blue** | `#0E4F8B` | Primary brand colour; wordmark on light |
-| **Azure** | `#16A6E8` / `#3B82F6` | W-gradient, highlights, hover |
-| **Cyan** | `#06B6D4` / bright `#22D3EE` | Beacon dots, links, the single accent |
-| **Navy** | `#0A0F1C` | Primary dark surface / card field |
-| **Disc Navy** | `#111827` | Badge disc, raised dark surfaces |
-| **Slate** | `#2D3A4F` | Borders / dividers on dark |
-| **Cloud** | `#F8FAFC` | Text & wordmark on dark; light surface |
-| **Muted** | `#94A3B8` | Secondary text |
-| **Ink** | `#0F1729` | Body text on light surfaces |
+**Surfaces** (darkest → lightest)
 
-**CSS custom properties** — drop straight into your stylesheet:
+| Name | Hex | Token | Role |
+|---|---|---|---|
+| **Navy** | `#0A0F1C` | `--bg-primary` | Page background / hero surface |
+| **Disc Navy** | `#111827` | `--bg-secondary` | Table heads, sunken areas |
+| **Card** | `#1A2234` | `--bg-card` | Cards, panels, controls |
+| **Card hover** | `#232D42` | `--bg-card-hover` | Hovered rows / cards |
+| **Slate** | `#2D3A4F` | `--border-color` | Borders / dividers on dark |
+
+**Brand & accents**
+
+| Name | Hex | Token | Role |
+|---|---|---|---|
+| **Blue** | `#3B82F6` | `--accent-blue` | **Primary action** / links |
+| **Deep Blue** | `#0E4F8B` | `--brand-primary` | Deep brand shade; wordmark on light |
+| **Cyan** | `#06B6D4` | `--accent-cyan` | Highlight, focus, primary buttons |
+| **Green** | `#10B981` | `--accent-green` | Success / positive |
+| **Orange** | `#F59E0B` | `--accent-orange` | **Warning / pending** *(functional only)* |
+| **Red** | `#EF4444` | `--accent-red` | Error / danger |
+| **Purple** | `#8B5CF6` | `--accent-purple` | Reference codes / secondary |
+| **Pink** | `#EC4899` | `--accent-pink` | Decorative (avatars) |
+| **Teal** | `#14B8A6` | `--accent-teal` | Extra category accent |
+| **Indigo** | `#6366F1` | `--accent-indigo` | Extra category accent |
+
+**Text:** `--text-primary #F8FAFC` · `--text-secondary #94A3B8` · `--text-muted #64748B`.
+
+**CSS custom properties** — these mirror `brand.css`; link that file rather than re-declaring:
 ```css
 :root {
-  --color-blue:        #0E4F8B;   /* primary brand */
-  --color-blue-deep:   #0B3C6B;
-  --color-azure:       #16A6E8;
-  --color-azure-2:     #3B82F6;   /* W-gradient start */
-  --color-cyan:        #06B6D4;   /* accent / beacon */
-  --color-cyan-bright: #22D3EE;   /* links on dark */
-  --color-navy:        #0A0F1C;   /* hero surface */
-  --color-disc:        #111827;
-  --color-slate:       #2D3A4F;
-  --color-cloud:       #F8FAFC;
-  --color-muted:       #94A3B8;
-  --color-ink:         #0F1729;
+  /* Surfaces */
+  --bg-primary:    #0a0f1c;  --bg-secondary: #111827;
+  --bg-card:       #1a2234;  --bg-card-hover:#232d42;
+  --border-color:  #2d3a4f;
 
-  /* Semantic aliases (dark-first) */
-  --bg:        var(--color-navy);
-  --surface:   var(--color-disc);
-  --border:    var(--color-slate);
-  --text:      var(--color-cloud);
-  --text-muted:var(--color-muted);
-  --primary:   var(--color-blue);
-  --accent:    var(--color-cyan);
-  --link:      var(--color-cyan-bright);
+  /* Brand */
+  --brand-primary: #0e4f8b;  --brand-cyan:   #06b6d4;
 
-  /* Signature W gradient */
-  --grad-beacon: linear-gradient(135deg, var(--color-azure-2), var(--color-cyan));
+  /* Accents (semantic) */
+  --accent-blue:   #3b82f6;  --accent-cyan:  #06b6d4;
+  --accent-green:  #10b981;  --accent-orange:#f59e0b;  /* warning only */
+  --accent-red:    #ef4444;  --accent-purple:#8b5cf6;
+  --accent-pink:   #ec4899;  --accent-teal:  #14b8a6;  --accent-indigo:#6366f1;
+
+  /* Text */
+  --text-primary:  #f8fafc;  --text-secondary:#94a3b8; --text-muted:#64748b;
+
+  /* Signature gradient (page titles, W-mark) */
+  --grad-beacon: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
 }
 ```
 
 **Usage**
-- Lead with **navy + deep blue**; let **cyan** appear as a single confident accent (links, the
-  beacon dots, one CTA). Cyan is the punch — don't scatter it.
-- **No orange.** It was the v1.0 accent and is fully retired.
+- Lead with **navy surfaces**; **blue `#3B82F6` is the primary action** colour and **cyan** the
+  confident highlight. Keep them dominant — the gradient `cyan → blue` is the signature title/W treatment.
+- **Functional accents only where they mean something:** green = success, **orange = warning/pending**,
+  red = error. Don't use orange decoratively — it earns its place as a state signal, never as brand flourish.
+- Purple/pink/teal/indigo are *category* accents (tiles, codes, avatars), used sparingly.
 - Light surfaces are the *inverse* of the dark default (Cloud background, Ink text, Deep Blue
   primary, Cyan accent).
 
 **Accessibility** — pairings meet WCAG AA at 16px+:
-- Cloud on Navy: ✓ high contrast.
+- Cloud (`#F8FAFC`) on Navy: ✓ high contrast.
 - Deep Blue on Cloud: ✓.
-- Cyan `#22D3EE` on Navy: ✓ (use the *bright* cyan for links on dark; the `#06B6D4` accent is for
-  fills/dots, not small text on dark).
+- Use bright cyan `#22D3EE` for small link text on dark; the `#06B6D4` accent is for fills/dots.
 
 ---
 
@@ -201,8 +220,8 @@ The v2.0 surface language is **soft depth and glow** (the *reverse* of v1.0's ha
 v1.0's tape strips and the orange disc). Use sparingly behind hero marks or as a section accent.
 
 **Buttons**
-- Primary: deep-blue fill, cloud text, radius 10–100px.
-- Accent: cyan fill for the single key CTA per view.
+- Primary: blue `#3B82F6` (or cyan `#06B6D4`) fill, dark/cloud text, radius 8–100px. See
+  `.btn-primary` in `brand.css`.
 - One primary CTA per view; include an arrow `→` on the primary CTA.
 
 ---
@@ -266,10 +285,11 @@ Base URL: `https://cdn.jsdelivr.net/gh/jamesbennett05051977/wickham-brand@main/`
 
 ```
 wickham-brand/
-  brand-system.md          ← this document (canonical)
+  brand-system.md          ← this document (canonical spec)
   svg/   wickham-mark.svg  wickham-lockup-dark.svg  wickham-lockup-light.svg
          wickham-og.svg    wickham-signature-card.svg
-  web/   favicon.ico/.svg  favicon-16/32/48.png  apple-touch-icon.png
+  web/   brand.css         ← canonical stylesheet (colour system + components, §3)
+         favicon.ico/.svg  favicon-16/32/48.png  apple-touch-icon.png
          android-chrome-192/512.png  lockup-dark/light(.png/@2x)  site.webmanifest  head-snippet.html
   email/ signature-card.png  mark-120.png(@2x)
   social/avatar-512/400.png  og-image-1200x630.png
@@ -301,11 +321,12 @@ Cloud background, Ink text, Deep Blue primary, Cyan accent. Deep blue and cyan a
 ## 16. Maintaining the Brand
 
 Anyone making a brand decision should ask:
-1. Is the surface **navy-first**, with **cyan as the single accent** (no orange)?
-2. Is the type **DM Sans** (display/body) + **Space Mono** (labels)?
+1. Is the surface **navy-first**, led by **blue + cyan**, with functional accents (green/orange/red)
+   used **only** to signal state — never orange as decoration?
+2. Is the type **DM Sans** (display/body) + **Space Mono** (labels/numbers)?
 3. Is the logo the **Beacon WS** badge or an approved lockup — unaltered?
 4. Is there exactly **one** primary CTA per view?
-5. Does the cyan land as a single confident **signal**, not scattered?
+5. Do blue/cyan stay dominant, with accents earning their place rather than scattered?
 6. Does it sound like a Hampshire engineer wrote it, not a London marketer?
 
 If any answer is "no," it's drifting from the brand.
@@ -314,11 +335,17 @@ If any answer is "no," it's drifting from the brand.
 
 ## 17. Changelog
 
+- **v2.1 — 14 June 2026 — "Beacon" (palette broadened).** Colour system realigned to the live ops
+  application and codified in the shared **`web/brand.css`** stylesheet (now the single source of
+  truth): blue `#3B82F6` is the primary action colour and a **functional/semantic accent set**
+  (success/warning/danger + category accents) is part of the brand. **Orange `#F59E0B` reinstated as
+  the warning/pending UI signal only** (not decorative). Logo, typography and the soft-glow aesthetic
+  unchanged from v2.0.
 - **v2.0 — 14 June 2026 — "Beacon".** New WS-monogram roundel logo; palette moved to deep blue +
-  azure/cyan on dark navy (orange retired); typography moved to DM Sans + Space Mono; aesthetic
-  reversed from hard Bauhaus to premium soft-glow/gradient; assets centralised in the `wickham-brand`
-  repo + jsDelivr CDN. **Supersedes v1.0.**
+  azure/cyan on dark navy; typography moved to DM Sans + Space Mono; aesthetic reversed from hard
+  Bauhaus to premium soft-glow/gradient; assets centralised in the `wickham-brand` repo + jsDelivr CDN.
+  **Supersedes v1.0.**
 - **v1.0 — 26 April 2026 — "Kiosk".** Cobalt + signal orange, Archivo Black `WICKHAM SERVICES.`
   wordmark, Bauhaus hard edges. *Retired.*
 
-*Wickham Services Ltd · Brand Design System · v2.0 · 14.06.26*
+*Wickham Services Ltd · Brand Design System · v2.1 · 14.06.26*

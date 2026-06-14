@@ -1,0 +1,516 @@
+/* ============================================================================
+   Wickham Services — Brand Stylesheet
+   Brand System v2.1 "Beacon"
+   ----------------------------------------------------------------------------
+   The canonical colour system + component library. Codifies the design system
+   used across the frontend pages (index.html, invoicing.html, accounts.html,
+   reports.html, scheduling-v3.html, …). Link it instead of copying tokens into
+   each page:
+
+       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+       <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+       <link rel="stylesheet" href="brand.css">
+
+   Canonical source: wickham-brand/web/brand.css (served via jsDelivr); this
+   copy mirrors it. Spec: https://github.com/jamesbennett05051977/wickham-brand
+   (brand-system.md §3).
+
+   Palette (v2.1): navy #0A0F1C surfaces; BLUE #3b82f6 is the primary action
+   colour (--accent-blue), cyan #06B6D4 the highlight; deep blue #0E4F8B is the
+   darker brand shade (--brand-primary). A functional/semantic accent set is
+   part of the brand — green=success, ORANGE #f59e0b=warning/pending (functional
+   signal only, never decorative), red=danger, + purple/pink/teal/indigo
+   category accents. Type: DM Sans + Space Mono.
+   ========================================================================== */
+
+/* ----------------------------------------------------------------------------
+   1. Design tokens
+   -------------------------------------------------------------------------- */
+:root {
+    /* Surfaces (darkest → lightest) */
+    --bg-primary:      #0a0f1c;   /* page background (brand navy) */
+    --bg-secondary:    #111827;   /* table heads, sunken areas */
+    --bg-card:         #1a2234;   /* cards, panels, controls */
+    --bg-card-hover:   #232d42;   /* hovered rows / cards */
+
+    /* Brand */
+    --brand-primary:   #0e4f8b;   /* official v2.0 deep blue */
+    --brand-cyan:      #06b6d4;   /* official v2.0 cyan */
+
+    /* Accents (semantic) */
+    --accent-blue:     #3b82f6;   /* primary action / links (app legacy blue) */
+    --accent-cyan:     #06b6d4;   /* highlight / focus / primary buttons */
+    --accent-green:    #10b981;   /* success / positive */
+    --accent-orange:   #f59e0b;   /* warning / pending (NOT a brand colour) */
+    --accent-red:      #ef4444;   /* error / danger */
+    --accent-purple:   #8b5cf6;   /* reference codes / secondary */
+    --accent-pink:     #ec4899;   /* decorative (avatars) */
+    --accent-teal:     #14b8a6;   /* extra tile variant */
+    --accent-indigo:   #6366f1;   /* extra tile variant */
+    --accent-slate:    #64748b;   /* neutral / disabled */
+
+    /* Text */
+    --text-primary:    #f8fafc;
+    --text-secondary:  #94a3b8;
+    --text-muted:      #64748b;
+
+    /* Lines & effects */
+    --border-color:    #2d3a4f;
+    --shadow-glow:     0 0 40px rgba(59, 130, 246, 0.15);
+    --shadow-card:     0 20px 40px rgba(0, 0, 0, 0.3);
+
+    /* Type */
+    --font-sans: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-mono: 'Space Mono', ui-monospace, monospace;
+
+    /* Radii */
+    --radius-sm: 4px;    /* badges */
+    --radius:    8px;    /* buttons, inputs */
+    --radius-md: 12px;   /* cards, panels */
+    --radius-lg: 20px;   /* tiles */
+
+    /* Spacing rhythm */
+    --gap: 20px;
+}
+
+/* ----------------------------------------------------------------------------
+   2. Base
+   -------------------------------------------------------------------------- */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-sans);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+a { color: var(--accent-cyan); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 24px;
+}
+.container--wide { max-width: 1800px; }
+
+/* Mono / numeric helpers (sign numbers, postcodes, stat values, codes) */
+.mono,
+.sign-number,
+.postcode { font-family: var(--font-mono); }
+.sign-number { color: var(--accent-purple); }
+.postcode    { color: var(--text-secondary); }
+
+/* Text colour utilities */
+.text-secondary { color: var(--text-secondary); }
+.text-muted     { color: var(--text-muted); }
+.text-cyan      { color: var(--accent-cyan); }
+.text-green     { color: var(--accent-green); }
+.text-orange    { color: var(--accent-orange); }
+.text-red       { color: var(--accent-red); }
+
+/* ----------------------------------------------------------------------------
+   3. Page header  (gradient title is the signature Wickham treatment)
+   -------------------------------------------------------------------------- */
+.header { margin-bottom: 40px; }
+
+.header h1,
+.page-title {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.header p { color: var(--text-secondary); }
+
+/* App bar variant (index.html dashboard header) */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 60px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+}
+.logo { display: flex; align-items: center; gap: 16px; }
+.logo-icon {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: var(--shadow-glow);
+}
+.logo-icon img { width: 100%; height: 100%; display: block; }
+.logo-text h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
+.logo-text span { font-size: 13px; color: var(--text-secondary); font-weight: 500; }
+
+/* ----------------------------------------------------------------------------
+   4. Cards, panels & controls bar
+   -------------------------------------------------------------------------- */
+.card,
+.panel,
+.controls,
+.table-container {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+}
+.card, .panel { padding: 24px; }
+
+.controls {
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* ----------------------------------------------------------------------------
+   5. Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    font-family: var(--font-sans);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+.btn-primary { background: var(--accent-cyan); color: var(--bg-primary); }
+.btn-primary:hover { background: #0891b2; }
+
+.btn-secondary {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+.btn-secondary:hover { background: var(--bg-card-hover); }
+
+.btn-success { background: var(--accent-green); color: var(--bg-primary); }
+.btn-danger  { background: var(--accent-red);   color: #fff; }
+.btn-ghost   { background: transparent; color: var(--text-secondary); }
+.btn-ghost:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
+
+/* ----------------------------------------------------------------------------
+   6. Inputs & selects
+   -------------------------------------------------------------------------- */
+input[type="text"], input[type="search"], input[type="number"],
+input[type="date"], input[type="email"], select, textarea,
+.input {
+    padding: 12px 16px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+}
+select { cursor: pointer; }
+input:focus, select:focus, textarea:focus,
+.input:focus {
+    outline: none;
+    border-color: var(--accent-cyan);
+}
+::placeholder { color: var(--text-muted); }
+
+.search-box { flex: 1; min-width: 300px; }
+.search-box input { width: 100%; }
+
+.filter-group { display: flex; gap: 10px; align-items: center; }
+.filter-group label { color: var(--text-secondary); font-size: 0.9rem; }
+
+/* ----------------------------------------------------------------------------
+   7. Tables
+   -------------------------------------------------------------------------- */
+.table-container { overflow: hidden; }
+
+table { width: 100%; border-collapse: collapse; }
+
+thead {
+    background: var(--bg-primary);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+th {
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--border-color);
+    white-space: nowrap;
+}
+td {
+    padding: 12px;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.9rem;
+}
+tbody tr { transition: background-color 0.2s; }
+tbody tr:hover { background-color: var(--bg-card-hover); }
+
+.client-name { color: var(--accent-cyan); font-weight: 600; }
+
+/* ----------------------------------------------------------------------------
+   8. Badges  (tinted background + accent text, uppercase)
+   -------------------------------------------------------------------------- */
+.badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.badge-green,  .badge-yes      { background: rgba(16, 185, 129, 0.2);  color: var(--accent-green); }
+.badge-neutral,.badge-no       { background: rgba(100, 116, 139, 0.2); color: var(--text-muted); }
+.badge-orange, .badge-po-check { background: rgba(245, 158, 11, 0.2);  color: var(--accent-orange); }
+.badge-blue,   .badge-invoiced { background: rgba(59, 130, 246, 0.2);  color: var(--accent-blue); }
+.badge-purple, .badge-sent     { background: rgba(139, 92, 246, 0.2);  color: var(--accent-purple); }
+.badge-red                     { background: rgba(239, 68, 68, 0.2);   color: var(--accent-red); }
+
+/* ----------------------------------------------------------------------------
+   9. Status pill  (live/error/loading indicator, with pulse dot)
+   -------------------------------------------------------------------------- */
+.status-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px;
+    border-radius: 100px;
+    font-size: 13px; font-weight: 500;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    color: var(--accent-green);
+}
+.status-badge.error   { background: rgba(239, 68, 68, 0.1);  border-color: rgba(239, 68, 68, 0.3);  color: var(--accent-red); }
+.status-badge.loading { background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.3); color: var(--accent-orange); }
+
+.status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent-green);
+    animation: pulse 2s ease-in-out infinite;
+}
+.status-badge.error   .status-dot { background: var(--accent-red); }
+.status-badge.loading .status-dot { background: var(--accent-orange); }
+
+/* ----------------------------------------------------------------------------
+   10. Stat cards
+   -------------------------------------------------------------------------- */
+.stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--gap);
+    margin-bottom: 50px;
+}
+.stat-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.3s ease;
+}
+.stat-item:hover { border-color: var(--accent-blue); transform: translateY(-2px); }
+.stat-label { font-size: 13px; color: var(--text-secondary); margin-bottom: 8px; font-weight: 500; }
+.stat-value { font-size: 32px; font-weight: 700; letter-spacing: -1px; }
+.stat-value.mono { font-family: var(--font-mono); font-size: 1.1rem; }
+.stat-change { font-size: 12px; color: var(--accent-green); margin-top: 8px; display: flex; align-items: center; gap: 4px; }
+.stat-change.warning { color: var(--accent-orange); }
+.stat-change.danger  { color: var(--accent-red); }
+
+/* ----------------------------------------------------------------------------
+   11. Tiles  (dashboard launcher cards with per-tile accent)
+   -------------------------------------------------------------------------- */
+.tiles-section h2 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    margin-bottom: 24px;
+    font-weight: 600;
+}
+.tiles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap); }
+
+.tile {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.tile::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, var(--tile-accent) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.tile:hover {
+    transform: translateY(-8px);
+    border-color: var(--tile-accent);
+    box-shadow: var(--shadow-card), 0 0 60px rgba(var(--tile-accent-rgb), 0.2);
+}
+.tile:hover::before { opacity: 0.1; }
+.tile.disabled { opacity: 0.5; cursor: not-allowed; pointer-events: none; }
+
+.tile-icon {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    position: relative; z-index: 1;
+    transition: transform 0.3s ease;
+}
+.tile:hover .tile-icon { transform: scale(1.1); }
+.tile-content { position: relative; z-index: 1; flex: 1; display: flex; flex-direction: column; }
+.tile-title { font-size: 18px; font-weight: 600; margin-bottom: 8px; letter-spacing: -0.3px; }
+.tile-desc  { font-size: 13px; color: var(--text-secondary); line-height: 1.5; flex: 1; }
+
+.tile-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 100px;
+    font-size: 12px; font-weight: 500;
+    color: var(--text-secondary);
+    margin-top: 16px;
+    align-self: flex-start;
+}
+.tile-badge.urgent { background: rgba(239, 68, 68, 0.15);  color: var(--accent-red); }
+.tile-badge.coming { background: rgba(245, 158, 11, 0.15); color: var(--accent-orange); }
+
+/* Per-tile accent variants */
+.tile-blue   { --tile-accent: #3b82f6; --tile-accent-rgb: 59, 130, 246; }
+.tile-cyan   { --tile-accent: #06b6d4; --tile-accent-rgb: 6, 182, 212; }
+.tile-green  { --tile-accent: #10b981; --tile-accent-rgb: 16, 185, 129; }
+.tile-orange { --tile-accent: #f59e0b; --tile-accent-rgb: 245, 158, 11; }
+.tile-red    { --tile-accent: #ef4444; --tile-accent-rgb: 239, 68, 68; }
+.tile-purple { --tile-accent: #8b5cf6; --tile-accent-rgb: 139, 92, 246; }
+.tile-pink   { --tile-accent: #ec4899; --tile-accent-rgb: 236, 72, 153; }
+.tile-teal   { --tile-accent: #14b8a6; --tile-accent-rgb: 20, 184, 166; }
+.tile-indigo { --tile-accent: #6366f1; --tile-accent-rgb: 99, 102, 241; }
+.tile-slate  { --tile-accent: #64748b; --tile-accent-rgb: 100, 116, 139; }
+.tile [class*="tile-"] .tile-icon { /* fallback */ }
+.tile-blue   .tile-icon { background: rgba(59, 130, 246, 0.15);  color: #3b82f6; }
+.tile-cyan   .tile-icon { background: rgba(6, 182, 212, 0.15);   color: #06b6d4; }
+.tile-green  .tile-icon { background: rgba(16, 185, 129, 0.15);  color: #10b981; }
+.tile-orange .tile-icon { background: rgba(245, 158, 11, 0.15);  color: #f59e0b; }
+.tile-red    .tile-icon { background: rgba(239, 68, 68, 0.15);   color: #ef4444; }
+.tile-purple .tile-icon { background: rgba(139, 92, 246, 0.15);  color: #8b5cf6; }
+.tile-pink   .tile-icon { background: rgba(236, 72, 153, 0.15);  color: #ec4899; }
+.tile-teal   .tile-icon { background: rgba(20, 184, 166, 0.15);  color: #14b8a6; }
+.tile-indigo .tile-icon { background: rgba(99, 102, 241, 0.15);  color: #6366f1; }
+.tile-slate  .tile-icon { background: rgba(100, 116, 139, 0.15); color: #94a3b8; }
+
+/* ----------------------------------------------------------------------------
+   12. Avatar
+   -------------------------------------------------------------------------- */
+.user-avatar {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 600; font-size: 16px;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--accent-purple), var(--accent-pink));
+    transition: transform 0.2s ease;
+}
+.user-avatar:hover { transform: scale(1.05); }
+
+/* ----------------------------------------------------------------------------
+   13. Loading state
+   -------------------------------------------------------------------------- */
+.loading { text-align: center; padding: 60px 20px; color: var(--text-secondary); }
+.loading::after { content: '...'; animation: dots 1.5s steps(4, end) infinite; }
+
+/* ----------------------------------------------------------------------------
+   14. Ambient background  (fixed grid + floating orbs — add the elements:
+        <div class="bg-grid"></div><div class="orb orb-1"></div><div class="orb orb-2"></div>)
+   -------------------------------------------------------------------------- */
+.bg-grid {
+    position: fixed; inset: 0;
+    background-image:
+        linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+}
+.orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+}
+.orb-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, var(--accent-blue), transparent 70%);
+    top: -200px; right: -100px;
+    animation: float 20s ease-in-out infinite;
+}
+.orb-2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, var(--accent-cyan), transparent 70%);
+    bottom: -150px; left: -100px;
+    animation: float 25s ease-in-out infinite reverse;
+}
+
+/* ----------------------------------------------------------------------------
+   15. Animations
+   -------------------------------------------------------------------------- */
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33%      { transform: translate(30px, -30px) scale(1.05); }
+    66%      { transform: translate(-20px, 20px) scale(0.95); }
+}
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.5; transform: scale(0.9); }
+}
+@keyframes dots {
+    0%   { content: '.'; }
+    33%  { content: '..'; }
+    66%  { content: '...'; }
+    100% { content: ''; }
+}
+
+/* ----------------------------------------------------------------------------
+   16. Responsive
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+    .tiles-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 900px) {
+    .tiles-grid { grid-template-columns: repeat(2, 1fr); }
+    .stats-bar  { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .container  { padding: 24px 16px; }
+    .tiles-grid, .stats-bar { grid-template-columns: 1fr; }
+    .app-header { flex-direction: column; gap: 20px; align-items: flex-start; }
+}
