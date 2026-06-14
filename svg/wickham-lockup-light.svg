@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="70 52 1390 580" fill="none">
+  <defs>
+    <linearGradient id="ringGlow" x1="258" y1="588" x2="566" y2="240" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+  <!-- Badge / mark (self-contained dark disc — works on light too) -->
+  <circle cx="372" cy="342" r="194" fill="#111827" stroke="#2D3A4F" stroke-width="18"/>
+  <circle cx="372" cy="342" r="236" stroke="rgba(59,130,246,0.16)" stroke-width="10"/>
+  <circle cx="372" cy="342" r="274" stroke="rgba(6,182,212,0.10)" stroke-width="8"/>
+  <g transform="translate(247.02,138.02) scale(0.52,0.62)">
+    <path d="M454 248C428 231 399 224 370 224C323 224 287 248 287 286C287 319 314 336 355 345C402 355 422 366 422 390C422 417 399 434 364 434C330 434 298 423 269 398" stroke="#F8FAFC" stroke-width="45" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <path d="M253 272L281 412L309 338L337 412L365 272" stroke="url(#ringGlow)" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="521" cy="217" r="16" fill="#06B6D4"/>
+  <circle cx="553" cy="190" r="14" fill="#06B6D4" fill-opacity="0.7"/>
+  <circle cx="582" cy="166" r="12" fill="#06B6D4" fill-opacity="0.45"/>
+  <!-- Wordmark (deep blue — for light backgrounds) -->
+  <text x="650" y="330" fill="#0E4F8B" font-family="Arial, sans-serif" font-size="104" font-weight="700">Wickham</text>
+  <text x="650" y="420" fill="#0E4F8B" font-family="Arial, sans-serif" font-size="104" font-weight="700">Services Ltd</text>
+</svg>

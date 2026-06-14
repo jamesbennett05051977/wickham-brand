@@ -1,0 +1,14 @@
+{
+  "name": "wickham-brand",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Wickham Services brand assets (Beacon WS logo) — single source of truth + renderer",
+  "type": "module",
+  "scripts": {
+    "render": "node scripts/render-brand.mjs"
+  },
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "png-to-ico": "^2.1.8"
+  }
+}

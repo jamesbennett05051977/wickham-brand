@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="220" viewBox="0 0 620 220" font-family="Arial, Helvetica, sans-serif">
+  <defs>
+    <linearGradient id="ringGlow" x1="258" y1="588" x2="566" y2="240" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B82F6"/><stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Dark blue card -->
+  <rect x="0" y="0" width="620" height="220" rx="16" fill="#0A0F1C"/>
+
+  <!-- Badge -->
+  <g transform="translate(28,35) scale(0.2622) translate(-86,-56)">
+    <circle cx="372" cy="342" r="194" fill="#111827" stroke="#2D3A4F" stroke-width="18"/>
+    <circle cx="372" cy="342" r="236" fill="none" stroke="rgba(59,130,246,0.16)" stroke-width="10"/>
+    <circle cx="372" cy="342" r="274" fill="none" stroke="rgba(6,182,212,0.10)" stroke-width="8"/>
+    <g transform="translate(247.02,138.02) scale(0.52,0.62)">
+      <path d="M454 248C428 231 399 224 370 224C323 224 287 248 287 286C287 319 314 336 355 345C402 355 422 366 422 390C422 417 399 434 364 434C330 434 298 423 269 398" fill="none" stroke="#F8FAFC" stroke-width="45" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <path d="M253 272L281 412L309 338L337 412L365 272" fill="none" stroke="url(#ringGlow)" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="521" cy="217" r="16" fill="#06B6D4"/>
+    <circle cx="553" cy="190" r="14" fill="#06B6D4" fill-opacity="0.7"/>
+    <circle cx="582" cy="166" r="12" fill="#06B6D4" fill-opacity="0.45"/>
+  </g>
+
+  <!-- Divider -->
+  <rect x="206" y="40" width="2" height="140" fill="#2D6CC0"/>
+
+  <!-- Text -->
+  <text x="230" y="74" fill="#FFFFFF" font-size="26" font-weight="bold">James Bennett</text>
+  <text x="230" y="98" fill="#94A3B8" font-size="15">Wickham Services Ltd</text>
+
+  <text x="230" y="130" fill="#06B6D4" font-size="14" font-weight="bold">T</text>
+  <text x="250" y="130" fill="#E2E8F0" font-size="14">+44 7949 062609</text>
+  <text x="230" y="154" fill="#06B6D4" font-size="14" font-weight="bold">E</text>
+  <text x="250" y="154" fill="#E2E8F0" font-size="14">james.bennett@wickhamservices.co.uk</text>
+  <text x="230" y="178" fill="#06B6D4" font-size="14" font-weight="bold">W</text>
+  <text x="250" y="178" fill="#22D3EE" font-size="14" font-weight="bold">wickhamservices.co.uk</text>
+
+  <text x="230" y="202" fill="#64748B" font-size="11" letter-spacing="2">RESPONSIVE &#183; VISIBLE &#183; DEPENDABLE</text>
+</svg>
