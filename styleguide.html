@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wickham Services Ltd — Brand System v2.0 "Beacon"</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --color-blue:#0E4F8B; --color-blue-deep:#0B3C6B;
+    --color-azure:#16A6E8; --color-azure-2:#3B82F6;
+    --color-cyan:#06B6D4; --color-cyan-bright:#22D3EE;
+    --color-navy:#0A0F1C; --color-disc:#111827; --color-slate:#2D3A4F;
+    --color-cloud:#F8FAFC; --color-muted:#94A3B8; --color-ink:#0F1729;
+    --font-display:'DM Sans',system-ui,sans-serif;
+    --font-body:'DM Sans',system-ui,sans-serif;
+    --font-mono:'Space Mono',ui-monospace,Consolas,monospace;
+    --grad-beacon:linear-gradient(135deg,var(--color-azure-2),var(--color-cyan));
+    --shadow-soft-md:0 10px 32px rgba(2,8,20,0.45);
+    --glow-beacon:0 0 40px rgba(59,130,246,0.18);
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; font-family:var(--font-body); color:var(--color-cloud);
+    background:
+      radial-gradient(circle at 85% -5%, rgba(59,130,246,.12), transparent 30%),
+      radial-gradient(circle at 10% 12%, rgba(6,182,212,.08), transparent 24%),
+      var(--color-navy);
+    line-height:1.55;
+  }
+  .wrap { max-width:1100px; margin:0 auto; padding:0 28px; }
+  a { color:var(--color-cyan-bright); }
+
+  /* mono kicker */
+  .kicker { font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.18em;
+            font-size:12px; color:var(--color-cyan); }
+
+  /* hero */
+  header.hero { padding:72px 0 48px; border-bottom:1px solid var(--color-slate); }
+  .hero-row { display:flex; align-items:center; gap:32px; flex-wrap:wrap; }
+  .hero h1 { font-family:var(--font-display); font-weight:800; font-size:48px; letter-spacing:-.02em;
+             margin:10px 0 6px; }
+  .hero p.lead { color:var(--color-muted); font-size:18px; max-width:560px; margin:0; }
+  .chip { display:inline-block; font-family:var(--font-mono); font-size:12px; padding:4px 10px;
+          border:1px solid var(--color-slate); border-radius:100px; color:var(--color-muted);
+          margin-top:14px; }
+  .mark-xl { width:180px; height:180px; filter:drop-shadow(var(--glow-beacon)); }
+
+  /* sections */
+  section { padding:48px 0; border-bottom:1px solid rgba(45,58,79,.5); }
+  h2.sec { font-family:var(--font-display); font-weight:800; font-size:13px; text-transform:uppercase;
+           letter-spacing:.16em; color:var(--color-cyan); margin:0 0 4px; }
+  h2.sec + .sub { color:var(--color-muted); margin:0 0 24px; font-size:15px; }
+
+  /* colour swatches */
+  .swatches { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; }
+  .sw { border:1px solid var(--color-slate); border-radius:12px; overflow:hidden; background:var(--color-disc); }
+  .sw .chipc { height:64px; }
+  .sw .meta { padding:10px 12px; }
+  .sw .nm { font-weight:700; font-size:14px; }
+  .sw .hex { font-family:var(--font-mono); font-size:12px; color:var(--color-muted); }
+  .sw .role { font-size:12px; color:var(--color-muted); margin-top:2px; }
+
+  /* type */
+  .type-stack > div { padding:14px 0; border-top:1px solid rgba(45,58,79,.5); }
+  .type-stack > div:first-child { border-top:none; }
+  .t-hero { font-family:var(--font-display); font-weight:800; font-size:44px; letter-spacing:-.02em; }
+  .t-h1 { font-family:var(--font-display); font-weight:700; font-size:30px; }
+  .t-h2 { font-family:var(--font-display); font-weight:700; font-size:22px; }
+  .t-body { font-size:17px; color:var(--color-cloud); }
+  .t-mono { font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.15em; font-size:12px; color:var(--color-cyan); }
+  .t-meta { font-family:var(--font-mono); font-size:12px; color:var(--color-muted); }
+
+  /* logo panels */
+  .logo-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
+  .panel { border:1px solid var(--color-slate); border-radius:14px; padding:28px; display:flex;
+           align-items:center; justify-content:center; min-height:150px; box-shadow:var(--shadow-soft-md); }
+  .panel.dark { background:var(--color-navy); }
+  .panel.disc { background:var(--color-disc); }
+  .panel.light { background:#ffffff; }
+  .panel .cap { position:relative; }
+  .lockup { display:flex; align-items:center; gap:18px; }
+  .lockup .mark-m { width:84px; height:84px; }
+  .lockup .wm { font-family:var(--font-display); font-weight:800; font-size:26px; line-height:1.05; letter-spacing:-.01em; }
+  .lockup.on-dark .wm { color:var(--color-cloud); }
+  .lockup.on-light .wm { color:var(--color-blue); }
+  .panel-label { font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.14em;
+                 color:var(--color-muted); margin-top:8px; }
+  .favs { display:flex; align-items:flex-end; gap:18px; }
+  .favs .f { text-align:center; }
+  .favs svg { display:block; }
+
+  /* components */
+  .btn { display:inline-flex; align-items:center; gap:8px; font-family:var(--font-display);
+         font-weight:700; font-size:14px; padding:12px 20px; border-radius:10px; border:1px solid transparent;
+         cursor:pointer; text-decoration:none; transition:transform .12s ease, box-shadow .12s ease; }
+  .btn:hover { transform:translateY(-2px); }
+  .btn-primary { background:var(--color-blue); color:#fff; border-color:var(--color-blue); box-shadow:var(--glow-beacon); }
+  .btn-accent  { background:var(--color-cyan); color:#04222b; border-color:var(--color-cyan); }
+  .btn-ghost   { background:transparent; color:var(--color-cloud); border-color:var(--color-slate); }
+  .row { display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+
+  .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; }
+  .card { background:var(--color-disc); border:1px solid var(--color-slate); border-radius:14px;
+          padding:22px; box-shadow:var(--shadow-soft-md); }
+  .card h3 { font-family:var(--font-display); font-weight:700; margin:0 0 6px; font-size:18px; }
+  .card p { margin:0; color:var(--color-muted); font-size:14px; }
+  .stat { background:var(--grad-beacon); color:#04222b; border-radius:14px; padding:22px; }
+  .stat .n { font-family:var(--font-display); font-weight:800; font-size:40px; line-height:1; }
+  .stat .l { font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.14em; margin-top:6px; }
+
+  .input { width:100%; padding:12px 14px; font-family:var(--font-body); font-size:15px;
+           background:var(--color-navy); border:1px solid var(--color-slate); border-radius:10px;
+           color:var(--color-cloud); }
+  .input:focus { outline:2px solid var(--color-cyan); outline-offset:2px; border-color:var(--color-cyan); }
+
+  .dos { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .dos ul { margin:8px 0 0; padding-left:18px; color:var(--color-muted); font-size:14px; }
+  .do h4, .dont h4 { font-family:var(--font-mono); font-size:12px; letter-spacing:.12em; text-transform:uppercase; margin:0; }
+  .do h4 { color:var(--color-cyan); } .dont h4 { color:#f87171; }
+
+  footer { padding:40px 0 64px; color:var(--color-muted); font-size:13px; }
+  @media (max-width:640px){ .hero h1{font-size:34px} .dos{grid-template-columns:1fr} }
+</style>
+</head>
+<body>
+
+<!-- ===== reusable logo symbol ===== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="wsGrad" x1="258" y1="588" x2="566" y2="240" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B82F6"/><stop offset="1" stop-color="#06B6D4"/>
+    </linearGradient>
+    <symbol id="ws-mark" viewBox="86 56 572 572">
+      <circle cx="372" cy="342" r="194" fill="#111827" stroke="#2D3A4F" stroke-width="18"/>
+      <circle cx="372" cy="342" r="236" fill="none" stroke="rgba(59,130,246,0.16)" stroke-width="10"/>
+      <circle cx="372" cy="342" r="274" fill="none" stroke="rgba(6,182,212,0.10)" stroke-width="8"/>
+      <g transform="translate(247.02,138.02) scale(0.52,0.62)">
+        <path d="M454 248C428 231 399 224 370 224C323 224 287 248 287 286C287 319 314 336 355 345C402 355 422 366 422 390C422 417 399 434 364 434C330 434 298 423 269 398" fill="none" stroke="#F8FAFC" stroke-width="45" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>
+      <path d="M253 272L281 412L309 338L337 412L365 272" fill="none" stroke="url(#wsGrad)" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="521" cy="217" r="16" fill="#06B6D4"/>
+      <circle cx="553" cy="190" r="14" fill="#06B6D4" fill-opacity="0.7"/>
+      <circle cx="582" cy="166" r="12" fill="#06B6D4" fill-opacity="0.45"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">Wickham Services Ltd · Brand System</div>
+    <div class="hero-row">
+      <svg class="mark-xl"><use href="#ws-mark"/></svg>
+      <div>
+        <h1>Beacon — v2.0</h1>
+        <p class="lead">The "WS" monogram, deep blue + cyan on dark navy, premium and signal-clear.
+          This page is the brand, demonstrating itself.</p>
+        <span class="chip">RESPONSIVE · VISIBLE · DEPENDABLE</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- COLOUR -->
+  <section>
+    <h2 class="sec">01 — Colour</h2>
+    <p class="sub">Dark-first. Navy is the hero surface; cyan is the single accent ("the signal"). No orange.</p>
+    <div class="swatches">
+      <div class="sw"><div class="chipc" style="background:#0E4F8B"></div><div class="meta"><div class="nm">Deep Blue</div><div class="hex">#0E4F8B</div><div class="role">Primary brand</div></div></div>
+      <div class="sw"><div class="chipc" style="background:#16A6E8"></div><div class="meta"><div class="nm">Azure</div><div class="hex">#16A6E8</div><div class="role">Highlight / W-gradient</div></div></div>
+      <div class="sw"><div class="chipc" style="background:#06B6D4"></div><div class="meta"><div class="nm">Cyan</div><div class="hex">#06B6D4</div><div class="role">Accent / beacon dots</div></div></div>
+      <div class="sw"><div class="chipc" style="background:#22D3EE"></div><div class="meta"><div class="nm">Cyan Bright</div><div class="hex">#22D3EE</div><div class="role">Links on dark</div></div></div>
+      <div class="sw"><div class="chipc" style="background:#0A0F1C"></div><div class="meta"><div class="nm">Navy</div><div class="hex">#0A0F1C</div><div class="role">Hero surface</div></div></div>
+      <div class="sw"><div class="chipc" style="background:#111827"></div><div class="meta"><div class="nm">Disc Navy</div><div class="hex">#111827</div><div class="role">Cards / badge disc</div></div></div>
+      <div class="sw"><div class="chipc" style="background:#2D3A4F"></div><div class="meta"><div class="nm">Slate</div><div class="hex">#2D3A4F</div><div class="role">Borders on dark</div></div></div>
+      <div class="sw"><div class="chipc" style="background:#F8FAFC"></div><div class="meta"><div class="nm">Cloud</div><div class="hex">#F8FAFC</div><div class="role">Text on dark</div></div></div>
+      <div class="sw"><div class="chipc" style="background:#94A3B8"></div><div class="meta"><div class="nm">Muted</div><div class="hex">#94A3B8</div><div class="role">Secondary text</div></div></div>
+      <div class="sw"><div class="chipc" style="background:#0F1729"></div><div class="meta"><div class="nm">Ink</div><div class="hex">#0F1729</div><div class="role">Text on light</div></div></div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section>
+    <h2 class="sec">02 — Typography</h2>
+    <p class="sub">DM Sans (display + body) · Space Mono (labels, tagline). Mono labels are the connective tissue.</p>
+    <div class="type-stack">
+      <div><div class="t-hero">Show up. Sort it. Move on.</div><div class="t-meta">DM Sans 800 · hero / display</div></div>
+      <div><div class="t-h1">A field service operation, run like software</div><div class="t-meta">DM Sans 700 · h1</div></div>
+      <div><div class="t-h2">Planned and reactive, nationwide</div><div class="t-meta">DM Sans 700 · h2</div></div>
+      <div><div class="t-body">Body copy is set in DM Sans regular at a comfortable measure — plain English, sentence case, understatement over hyperbole.</div><div class="t-meta">DM Sans 400 · body 17px</div></div>
+      <div><div class="t-mono">— Field service · Engineered ops</div><div class="t-meta">Space Mono · uppercase · 0.15em</div></div>
+    </div>
+  </section>
+
+  <!-- LOGO -->
+  <section>
+    <h2 class="sec">03 — Logo</h2>
+    <p class="sub">The Beacon "WS" badge + lockups. The badge is self-contained, so it works on any surface.</p>
+    <div class="logo-grid">
+      <div>
+        <div class="panel dark"><div class="lockup on-dark"><svg class="mark-m"><use href="#ws-mark"/></svg><div class="wm">Wickham<br>Services&nbsp;Ltd</div></div></div>
+        <div class="panel-label">Lockup — on navy / dark</div>
+      </div>
+      <div>
+        <div class="panel light"><div class="lockup on-light"><svg class="mark-m"><use href="#ws-mark"/></svg><div class="wm">Wickham<br>Services&nbsp;Ltd</div></div></div>
+        <div class="panel-label">Lockup — on light</div>
+      </div>
+      <div>
+        <div class="panel disc"><svg style="width:110px;height:110px"><use href="#ws-mark"/></svg></div>
+        <div class="panel-label">Mark — app icon / avatar / favicon</div>
+      </div>
+      <div>
+        <div class="panel disc"><div class="favs">
+          <div class="f"><svg style="width:64px;height:64px"><use href="#ws-mark"/></svg><div class="panel-label">64</div></div>
+          <div class="f"><svg style="width:32px;height:32px"><use href="#ws-mark"/></svg><div class="panel-label">32</div></div>
+          <div class="f"><svg style="width:16px;height:16px"><use href="#ws-mark"/></svg><div class="panel-label">16</div></div>
+        </div></div>
+        <div class="panel-label">Favicon sizes</div>
+      </div>
+    </div>
+    <div class="dos" style="margin-top:22px">
+      <div class="do"><h4>✓ Do</h4><ul>
+        <li>Keep clear space = the badge's inner-disc radius.</li>
+        <li>Use the badge on any colour — it carries its own dark disc.</li>
+        <li>Let cyan land as a single accent.</li>
+      </ul></div>
+      <div class="dont"><h4>✕ Don't</h4><ul>
+        <li>Recolour the W gradient or the white S.</li>
+        <li>Remove or add beacon dots; stretch, skew or rotate.</li>
+        <li>Introduce a second accent colour (no orange).</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- COMPONENTS -->
+  <section>
+    <h2 class="sec">04 — Components</h2>
+    <p class="sub">Soft depth and glow (the reverse of the old hard-edged system). Rounded corners, cyan focus.</p>
+
+    <div class="row" style="margin-bottom:24px">
+      <a class="btn btn-primary" href="#">Request a brief →</a>
+      <a class="btn btn-accent" href="#">Get in touch →</a>
+      <a class="btn btn-ghost" href="#">See our work</a>
+    </div>
+
+    <div class="cards" style="margin-bottom:18px">
+      <div class="card"><h3>Planned maintenance</h3><p>Scheduled, dispatched, audited — every visit on the system.</p></div>
+      <div class="card"><h3>Reactive call-out</h3><p>We answer, we turn up, we move. Responsive by design.</p></div>
+      <div class="stat"><div class="n">1,400</div><div class="l">Sites covered</div></div>
+    </div>
+
+    <div class="row" style="gap:24px; align-items:flex-start">
+      <div style="flex:1; min-width:220px">
+        <label class="t-mono" style="display:block;margin-bottom:8px">Email</label>
+        <input class="input" type="email" placeholder="you@company.co.uk">
+      </div>
+      <div style="flex:1; min-width:220px">
+        <label class="t-mono" style="display:block;margin-bottom:8px">Link</label>
+        <p style="margin:6px 0 0"><a href="https://wickhamservices.co.uk">wickhamservices.co.uk</a> — cyan link on navy.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- USAGE -->
+  <section>
+    <h2 class="sec">05 — Use it in a project</h2>
+    <p class="sub">Single source of truth = the <code>wickham-brand</code> repo, served via jsDelivr CDN.</p>
+    <div class="card" style="font-family:var(--font-mono); font-size:12.5px; color:var(--color-muted); overflow-x:auto">
+      &lt;link rel="icon" href="https://cdn.jsdelivr.net/gh/jamesbennett05051977/wickham-brand@v2.0.0/web/favicon.ico"&gt;<br>
+      &lt;link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700;800&amp;family=Space+Mono&amp;display=swap" rel="stylesheet"&gt;<br>
+      <span style="color:var(--color-cyan)">/* full &lt;head&gt; block:</span> @v2.0.0/web/head-snippet.html <span style="color:var(--color-cyan)">*/</span>
+    </div>
+  </section>
+
+  <footer>
+    Wickham Services Ltd · Brand System v2.0 "Beacon" · supersedes v1.0 "Kiosk" · 14.06.26 ·
+    <a href="https://github.com/jamesbennett05051977/wickham-brand">github.com/jamesbennett05051977/wickham-brand</a>
+  </footer>
+
+</div>
+</body>
+</html>
